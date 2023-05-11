@@ -14,6 +14,7 @@ type Authentification interface {
 
 var _ Authentification = (*MyPlugin)(nil)
 
+// plugin test
 type MyPlugin struct {
 }
 
