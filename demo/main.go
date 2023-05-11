@@ -7,6 +7,7 @@ import (
 	"github.com/hyperscale-stack/pluginmanager/demo/pkg/plugin"
 )
 
+// nolint: forbidigo
 func main() {
 	pm := pluginmanager.New[plugin.Authentification]()
 

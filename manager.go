@@ -15,7 +15,7 @@ func New[T any]() *PluginManager[T] {
 	}
 }
 
-// Register registers a plugin
+// Register registers a plugin.
 func (pm *PluginManager[T]) Register(plugin *Plugin[T]) error {
 	name := plugin.ID()
 
@@ -28,6 +28,7 @@ func (pm *PluginManager[T]) Register(plugin *Plugin[T]) error {
 	return nil
 }
 
+// RegisterFromFile registers a plugin from a file.
 func (pm *PluginManager[T]) RegisterFromFile(path string) error {
 	p, err := plugin.Open(path)
 	if err != nil {
@@ -47,7 +48,7 @@ func (pm *PluginManager[T]) RegisterFromFile(path string) error {
 	return pm.Register(pi)
 }
 
-// Get returns a plugin by name
+// Get returns a plugin by name.
 func (pm *PluginManager[T]) Get(name string) (p T, err error) {
 	if plugin, exists := pm.plugins[name]; exists {
 		return plugin, nil
