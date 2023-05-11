@@ -34,5 +34,5 @@ cover: coverage.out
 
 
 test.plugin.so: $(shell find . -type f -print | grep -v vendor | grep "\.go")
-	@cd ./plugin/test && go build -buildmode=plugin -o ../../test.plugin.so github.com/hyperscale-stack/pluginmanager/plugin/test
-	#@go build -buildmode=plugin -o ./test.plugin.so ./plugin/test
+	#@cd ./plugin/test && go build -buildmode=plugin -gcflags="all=-N -l" --trimpath -o ../../test.plugin.so github.com/hyperscale-stack/pluginmanager/plugin/test
+	@go build -buildmode=plugin -o ./test.plugin.so ./plugin/test

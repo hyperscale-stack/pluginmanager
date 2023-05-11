@@ -1,8 +1,9 @@
-package pluginmanager
+package pluginmanager_test
 
 import (
 	"testing"
 
+	"github.com/hyperscale-stack/pluginmanager"
 	plug "github.com/hyperscale-stack/pluginmanager/demo/pkg/plugin"
 	"github.com/stretchr/testify/assert"
 )
@@ -21,9 +22,9 @@ func (p *MyPlugin) Authentificate(username, password string) (bool, error) {
 }
 
 func TestPluginManager(t *testing.T) {
-	pm := New[Authentification]()
+	pm := pluginmanager.New[Authentification]()
 
-	plugin := &Plugin[Authentification]{
+	plugin := &pluginmanager.Plugin[Authentification]{
 		Name:     "test",
 		Instance: &MyPlugin{},
 	}
@@ -46,7 +47,7 @@ func TestPluginManager(t *testing.T) {
 }
 
 func TestPluginManagerWithFile(t *testing.T) {
-	pm := New[plug.Authentification]()
+	pm := pluginmanager.New[plug.Authentification]()
 
 	err := pm.RegisterFromFile("test.plugin.so")
 	assert.NoError(t, err)

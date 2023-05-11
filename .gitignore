@@ -15,3 +15,5 @@ gen/
 test.plugin.so
 
 *.tmp
+
+*.app

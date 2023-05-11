@@ -14,9 +14,9 @@ func (p *MyPlugin) Authentificate(username, password string) (bool, error) {
 	return true, nil
 }
 
-func Register() (*pluginmanager.Plugin[*MyPlugin], error) {
+func Register() (*pluginmanager.Plugin[plugin.Authentification], error) {
 
-	return &pluginmanager.Plugin[*MyPlugin]{
+	return &pluginmanager.Plugin[plugin.Authentification]{
 		Name:     "test",
 		Instance: &MyPlugin{},
 	}, nil
