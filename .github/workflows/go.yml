@@ -2,34 +2,32 @@ name: Go
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
-
   build:
     name: Build
     runs-on: ubuntu-latest
     steps:
+      - name: Set up Go 1.x
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.x"
+        id: go
 
-    - name: Set up Go 1.x
-      uses: actions/setup-go@v5
-      with:
-        go-version: "1.x"
-      id: go
+      - name: Check out code into the Go module directory
+        uses: actions/checkout@v4
 
-    - name: Check out code into the Go module directory
-      uses: actions/checkout@v4
+      - name: Build
+        run: go build -race -v -o ./demo.app ./demo
 
-    - name: Build
-      run: go build -race -v -o ./demo.app ./demo
+      - name: Test
+        run: make test
 
-    - name: Test
-      run: make test
-
-    - name: Run golangci-lint
-      uses: golangci/golangci-lint-action@v4.0.0
-      with:
-        version: v1.52.2
-        skip-pkg-cache: true
+      - name: Run golangci-lint
+        uses: golangci/golangci-lint-action@v4.0.0
+        with:
+          version: v1.55.2
+          skip-cache: true
