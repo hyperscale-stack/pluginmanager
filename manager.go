@@ -40,7 +40,7 @@ func (pm *PluginManager[T]) RegisterFromFile(path string) error {
 		return fmt.Errorf("could not find Register function in plugin %s: %w", path, err)
 	}
 
-	pi, err := register.(func() (*Plugin[T], error))()
+	pi, err := register.(func() (*Plugin[T], error))() // nolint: forcetypeassert
 	if err != nil {
 		return fmt.Errorf("could not register plugin %s: %w", path, err)
 	}
